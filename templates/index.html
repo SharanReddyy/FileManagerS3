@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS S3 Flask App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        h1, h2 {
+            margin-bottom: 10px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="file"] {
+            width: 300px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button[type="submit"] {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>AWS S3 Flask App</h1>
+
+    <h2>Create Bucket</h2>
+    <form action="/create_bucket" method="post">
+        <label for="bucket_name">Bucket Name:</label>
+        <input type="text" id="bucket_name" name="bucket_name" placeholder="Bucket name" required>
+        <button type="submit">Create</button>
+    </form>
+
+    <h2>Delete Bucket</h2>
+    <form action="/delete_bucket" method="post">
+        <label for="bucket_name">Bucket Name:</label>
+        <input type="text" id="bucket_name" name="bucket_name" placeholder="Bucket name" required>
+        <button type="submit">Delete</button>
+    </form>
+
+    <h2>Upload File</h2>
+    <form action="/upload_file" method="post" enctype="multipart/form-data">
+        <label for="bucket_name">Bucket Name:</label>
+        <input type="text" id="bucket_name" name="bucket_name" placeholder="Bucket name" required><br><br>
+        <input type="file" id="file" name="file" required><br><br>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>List Bucket Contents</h2>
+    <form action="/list_s3" method="get">
+        <label for="bucket_name">Bucket Name:</label>
+        <input type="text" id="bucket_name" name="bucket_name" placeholder="Bucket name" required>
+        <button type="submit">List Contents</button>
+    </form>
+
+    <h1>Move File Between Buckets</h1>
+
+    <form action="/move_file" method="post">
+        <label for="source_bucket">Source Bucket:</label>
+        <input type="text" id="source_bucket" name="source_bucket" placeholder="Source bucket" required><br><br>
+
+        <label for="destination_bucket">Destination Bucket:</label>
+        <input type="text" id="destination_bucket" name="destination_bucket" placeholder="Destination bucket" required><br><br>
+
+        <label for="file_name">File Name:</label>
+        <input type="text" id="file_name" name="file_name" placeholder="File name" required><br><br>
+
+        <button type="submit">Move File</button>
+    </form>
+
+    <h1>Delete Object from Bucket</h1>
+
+    <form action="/delete_object" method="post">
+        <label for="bucket_name">Bucket Name:</label>
+        <input type="text" id="bucket_name" name="bucket_name" placeholder="Bucket name" required><br><br>
+
+        <label for="object_key">Object Key:</label>
+        <input type="text" id="object_key" name="object_key" placeholder="Object key (path)" required><br><br>
+
+        <button type="submit">Delete Object</button>
+    </form>
+
+    <h1>Create and Delete Folders in S3</h1>
+
+    <h2>Create Folder</h2>
+    <form action="/create_folder" method="post">
+        <label for="create_bucket_name">Bucket Name:</label>
+        <input type="text" id="create_bucket_name" name="bucket_name" placeholder="Bucket name" required><br><br>
+        <label for="folder_name">Folder Name:</label>
+        <input type="text" id="folder_name" name="folder_name" placeholder="Folder name" required><br><br>
+        <button type="submit">Create Folder</button>
+    </form>
+
+    <h2>Delete Folder</h2>
+    <form action="/delete_folder" method="post">
+        <label for="delete_bucket_name">Bucket Name:</label>
+        <input type="text" id="delete_bucket_name" name="bucket_name" placeholder="Bucket name" required><br><br>
+        <label for="delete_folder_name">Folder Name:</label>
+        <input type="text" id="delete_folder_name" name="folder_name" placeholder="Folder name" required><br><br>
+        <button type="submit">Delete Folder</button>
+    </form>
+</body>
+</html>
